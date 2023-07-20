@@ -1,14 +1,14 @@
 T = int(input())
-word_list = []
+word = []
 
 for t in range(T) :
-    for i in range(len(word_list)) :
-        new_word = input()
-        if len(new_word) > len(word_list[i]) :
-            continue 
-        elif new_word > word_list[i] :
-            continue
-        word_list.insert(i+1, new_word)
-print(*word_list, sep='\n')
+    word.append(input())
+    for i in range(1, len(word)) :
+        for j in range(len(word)-i+1) :
+            if len(word[j-1]) > len(word[j]) :
+                word[j-1], word[j] = word[j], word[j-1]
+            elif word[j-1] > word[j] :
+                word[j-1], word[j] = word[j], word[j-1]
+print(*word, sep='\n')
 
 # 시간초과 오류
