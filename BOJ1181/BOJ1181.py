@@ -11,4 +11,6 @@ for t in range(T) :
                 word[j-1], word[j] = word[j], word[j-1]
 print(*word, sep='\n')
 
+# 버블소트 사용 
+
 # 시간초과 오류

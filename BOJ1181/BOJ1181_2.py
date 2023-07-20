@@ -20,4 +20,5 @@ for t in range(T) :
         
 print(*word_list, sep='\n')
 
+# 막 구현
 # 시간 초과
