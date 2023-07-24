@@ -1,7 +1,7 @@
 N = int(input())
 total = 0
 i = 1
-while N > total :
+while N > total : 
     total += i
     i += 1
 cnt = total - N
