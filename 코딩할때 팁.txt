@@ -1,0 +1,10 @@
+테스트 케이스의 개수가 정해지지 않았다면??
+
+while True:
+    try:
+        A, B = map(int, input().split())
+        print(A+B)
+    except:
+        break
+
+python 파일에서는 ctrl + c나 ctrl + z 같은 이스케이프 문자를 사용해서 종료가 가능
