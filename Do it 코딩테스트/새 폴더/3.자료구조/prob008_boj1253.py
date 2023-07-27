@@ -1,17 +1,19 @@
+import sys
+input = sys.stdin.readline
 N = int(input())
 X = list(map(int, input().split()))
 X.sort()
-G = set()
-idx1 = 0 
-idx2 = 1
-for i in range(2, N) :
-    while idx1 < i - 1 :
-    elif tmp < result :
-        result = tmp
-    # print(f'idx1:{idx1}, idx2:{idx2}, tmp:{tmp}')
-
-    if idx2 >= i :
-        idx1 += 1
-        idx2 = idx1 + 1
-    else :
-        idx2 += 1
+cnt = 0
+for i in range(len(X)) :
+    idx1 = 0 
+    idx2 = N-1
+    while idx1 < idx2 :
+        if X[idx1] + X[idx2] > X[i] or i == idx2:
+            idx2 -= 1
+        elif X[idx1] + X[idx2] < X[i] or i == idx1 :
+            idx1 += 1
+        else :
+            cnt += 1
+            break
+print(cnt)
+    
