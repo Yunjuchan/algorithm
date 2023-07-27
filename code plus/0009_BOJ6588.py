@@ -17,3 +17,6 @@ while True :
         if Prime[i] == 1 and Prime[N-i] == 1 :
             print(f'{N} = {i} + {N-i}')
             break
+
+# 에라토스테네스의 체 + DP
+# 시간복잡도 잘 모르겠음

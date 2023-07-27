@@ -14,3 +14,5 @@ for num in num_list :
     if Prime[num] == 1 :
         cnt += 1
 print(cnt)
+
+## 시간복잡도 O(n^(3/2))으로 해결
