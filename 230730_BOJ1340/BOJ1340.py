@@ -28,3 +28,6 @@ print(floated_minute / total_minute * 100)
 print(floated_days(date[2], date[0], date[1]))
  
 
+## 파이썬에는 datetime이라는 라이브러리가 있는데 
+## datetime 라이브러리에 들어있는 함수를 사용하면 간단하게 해결 가능
+
