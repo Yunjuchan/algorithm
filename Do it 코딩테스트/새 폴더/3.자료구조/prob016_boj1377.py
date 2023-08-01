@@ -1,17 +1,32 @@
+# import sys
+# input = sys.stdin.readline
+# N = int(input())
+# cnt = 0
+# lst = []
+# for i in range(N) :
+#     lst.append(int(input()))
+# while True :
+#     lst2 = []
+#     cnt += 1
+#     if len(lst) <= 1 :
+#         break
+#     for i in range(1,len(lst)) :
+#         if lst[i-1] - lst[i] > 0 :
+#             lst2.append(lst[i-1])
+#     lst = lst2
+        
+# print(cnt)
+
+import sys
+input = sys.stdin.readline
+
 N = int(input())
-flag = 0
-lst = []
+A = [(int(input()), i) for i in range(N)]
+A.sort()
+
+max_cnt = 0
 for i in range(N) :
-    lst.append(int(input()))
-try :
-    for i in range(1,N+1) :
-        flag = 0
-        for j in range(1, N-i) :
-            if lst[j-1] > lst[j] :
-                flag = 1
-                lst[j-1], lst[j] = lst[j], lst[j-1] 
-        if flag == 0 :
-            print(i)
-            break
-except :
-    pass
+    cnt = A[i][1] - i
+    if cnt > max_cnt :
+        max_cnt = cnt
+print(max_cnt + 1)
