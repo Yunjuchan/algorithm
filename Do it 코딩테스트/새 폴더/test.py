@@ -1,17 +1,20 @@
-import random
+num = list(map(int, input()))
+bucket = [0] * 10
 
-testcase = int(input())
+set_buck = bucket[0]
+cnt_69 = 0
 
-answer = 0
-A = [0] * 10001
+for i in range(len(num)):
+    if num[i] == 6 or num[i] == 9 :
+        cnt_69 += 1
+    else :
+        bucket[num[i]] += 1
+for i in range(len(bucket)):
+    if bucket[i] > set_buck:
+        set_buck = bucket[i]
 
-for i in range(0, 10001) :
-    A[i] = random.randrange(1, 101)
+set_69 = (cnt_69 + 1) // 2
 
-for t in range(1, testcase + 1) :
-    start, end = map(int, input().split())
-
-    for i in range(start, end + 1) :
-        answer += A[i]
-
-    print(str(testcase) + " " + str(answer/2))
+if set_69 >= set_buck:
+    print(set_69)
+else: print(set_buck)
