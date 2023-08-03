@@ -1,23 +1,30 @@
-# def quick_sort(arr) :
+array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
 
-arr = [9,7,5,3,1,2,4,6,8]
-idx1 = 0
-idx2 = len(arr) - 1
-pivot = arr[idx2]
-while idx1 < idx2 :
-    if arr[idx2] < pivot < arr[idx1] :
-        arr[idx1], arr[idx2] = arr[idx2], arr[idx1]
-        idx1 += 1
-        idx2 -= 1
-    else :
-        if arr[idx1] > pivot :
-            idx1 += 1
-        if arr[idx2] < pivot :
-            idx2 -= 1
-if arr[idx2] > pivot :
-    left = arr[:idx2]
-    # 피봇 집어넣으면
-    right = arr[idx2+1:]
-else :
-    left = arr[:idx1]
-    right = arr[idx1-1:]
+def quick_sort(array, start, end):
+    if start >= end:
+        return
+    pivot = start #피벗 초기값은 첫번째 요소
+    left = start+1
+    right = end
+    
+    while left <= right:
+        # 피벗보다 큰 데이터를 찾을 때까지 반복
+        while left <= end and array[left] <= array[pivot]:
+            left+=1
+            
+            #피벗보다 작은 데이터를 찾을 때까지 반복
+        while right > start and array[right] >= array[pivot]:
+            right-=1
+            
+        if left>right: # 엇갈렸다면 작은 right -=1 데이터와 피벗을 교체
+            array[right], array[pivot] = array[pivot], array[right]
+            
+        else: # 엇갈리지 않았다면 작은 데이터와 큰 데이터를 교체 
+            array[left], array[right] = array[right], array[left]
+            
+    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
+    quick_sort(array, start, right-1)
+    quick_sort(array, right+1, end)
+    
+quick_sort(array, 0, len(array)-1)
+print(array)
