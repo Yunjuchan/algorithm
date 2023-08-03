@@ -9,6 +9,3 @@ for i in range(1, 10001) :
     if bucket[i] != 0 :
         for j in range(bucket[i]) :
             print(i)
-
-
-
