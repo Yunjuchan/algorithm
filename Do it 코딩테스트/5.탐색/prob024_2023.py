@@ -5,7 +5,7 @@ N = int(input())
 # prime = [True] * (10 ** 8 + 1)
 # prime[0] = prime[1] = False
 # for i in range(2, 10 ** 4 + 1) :
-#     for j in range(2, (10 ** 4 + 1) // i) :
+#     for j in range(i*i, (10 ** 4 + 1) // i) :
 #         prime[i*j] = False
 
 # def DFS(x) :
