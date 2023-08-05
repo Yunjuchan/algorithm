@@ -1,34 +1,23 @@
 import sys
 input = sys.stdin.readline
 N = int(input())
-switch = [0] + list(map(int, input().split()))
-def boy(x) :
-    for i in range(1, N//x+1) :
-        switch[x*i] = (switch[x*i] + 1) % 2
+K = int(input())
+prime = [True] * (N+1)
+prime[0] = prime[1] = False
+cnt = 0
+soinsu = [1]
+for i in range(2, int(N ** (1/2)) + 1) :
+    for j in range(i, (N // i) + 1) :
+        prime[i*j] = False
 
-def girl(x) :
-    i = 1
-    while True :
-        i += 1
-        if x-i == 0 or x+i == N :
-            i -= 1
-            break
-        if switch[x-i] == switch[x+i] :
-            continue
-        else :
-            x -= 1
-            break
-    while i != 0 :
-        switch[x-i] = (switch[x-i] + 1) % 2
-        switch[x+i] = (switch[x+i] + 1) % 2
-        i -= 1
-    switch[x] = (switch[x] + 1) % 2
+for i in range(1, N+1) :
+    for p, bl in enumerate(prime[:]) :
+        if bl and i % p == 0 :
+             soinsu.append(p)
+    if soinsu[-1] <= K :
+        cnt += 1
+print(cnt)
 
-M = int(input())
-for i in range(M) :
-    s, n = map(int, input().split())
-    if s == 1 :
-        boy(n)
-    else :
-        girl(n)
-print(*switch[1:])
+
+
+
