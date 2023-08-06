@@ -5,7 +5,7 @@ cursor = len(word)
 N = int(input())
 
 for i in range(N) :
-    x = input().strip().split()
+    x = input().split()
     if x[0] == 'L' and cursor > 0 :
         cursor -= 1
     elif x[0] == 'D' and cursor < len(word) :
