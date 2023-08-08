@@ -1,4 +1,4 @@
-array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+array = [4,1,7,9,6,3,3,6]
 
 def quick_sort(array, start, end):
     if start >= end:
