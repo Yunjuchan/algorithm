@@ -1,8 +1,9 @@
 import sys
+from collections import deque
 input = sys.stdin.readline
 sys.setrecursionlimit(10000)
-from collections import deque
 N, M, V = map(int, input().split())
+
 adjacant = [[] for _ in range(N+1)] 
 for i in range(M) :
     a, b = map(int, input().split())
@@ -36,3 +37,4 @@ def BFS(x) :
         return
 BFS(V)
 print(*bfs_path)
+
