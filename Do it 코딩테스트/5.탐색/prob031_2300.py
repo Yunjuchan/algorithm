@@ -4,7 +4,7 @@ K = int(input())
 x = 1
 while True :
     if 2*K <= x*(x+1) :
-        res = ''
+        res = K - (x*(x-1))//2
         break
     x += 1
 
@@ -13,4 +13,6 @@ if x > N :
 else :
     pass
 print(x)
-
+print(res)
+lst = [(N-x+i)*((N-x)+((x+1)-i)) for i in range(1,x+1)]
+print(lst)
