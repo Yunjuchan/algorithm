@@ -1,3 +1,4 @@
+# pypy로 실행 성공
 N = int(input())
 area = [0] * (N+1)
 arr = [[0]*1001 for _ in range(1001)]
