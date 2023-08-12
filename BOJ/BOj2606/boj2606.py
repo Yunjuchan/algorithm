@@ -7,7 +7,7 @@ adj = [deque() for _ in range(N+1)]
 for _ in range(M) : 
     s, e = map(int, input().split())
     adj[s].append(e)
-    # adj[e].append(s)
+    adj[e].append(s)
 def BFS(x) :
     cnt = 0
     que = deque()   
@@ -18,6 +18,6 @@ def BFS(x) :
             visited[a] = True
             cnt += 1
             que += adj[a]
-    return cnt
+    return cnt-1
 visited = [False] * (N+1)
 print(BFS(1))
