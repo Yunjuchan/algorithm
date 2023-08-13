@@ -20,4 +20,4 @@ for tc in range(1, T+1) :
             if balloons[i][j] != 0 :
                 if popping(i,j) > Max :
                     Max = popping(i,j)
-    print(Max)
+    print(f'#{tc} {Max}')
