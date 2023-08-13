@@ -16,21 +16,29 @@
 #         end = mid - 1
 # print(ans)
 
-N = int(input())
-K = int(input())
-x = 1
-while True :
-    if 2*K <= x*(x+1) :
-        res = K - (x*(x-1))//2
-        print(res)
-        break
-    x += 1
-print(x)
-if x > N :
-    x = 2*N-x
-    lst = [(N-x+i)*((N-x)+((x+1)-i)) for i in range(1,x+1)]
-else :
-    lst = [i*((x+1)-i) for i in range(1, x+1)]
-lst.sort()
-print(lst)
-# print(lst[res-1])
+
+
+# ## 내풀이도 실패
+# N = int(input())
+# K = int(input())
+# x = 1
+# flag = 0
+# while True :
+#     if K > N :
+#         K = N**2 - K
+#         flag = 1
+#     if 2*K <= x*(x+1) :
+#         res = K - (x*(x-1))//2
+#         print(res)
+#         break
+    
+#     x += 1
+# print(x)
+# if flag == 1 :
+    
+#     lst = [(N-x+i)*((N-x)+((x+1)-i)) for i in range(1,x+1)]
+# else :
+#     lst = [i*((x+1)-i) for i in range(1, x+1)]
+# lst.sort()
+# print(lst)
+# # print(lst[res-1])

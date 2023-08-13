@@ -25,8 +25,6 @@ def BFS() :
                 continue
             tomato[dy][dx] = tomato[y][x] + 1
             que.append([dy, dx])
-    for a in tomato :
-        print(*a)
     for i in range(N) :
         for j in range(M) :
             if tomato[i][j] == 0 :

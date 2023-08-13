@@ -4,7 +4,6 @@ cnt = 0
 for _ in range(N) :
     stack.append(int(input()))
 while stack :
-    print(target)
     x = stack.pop()
     cnt += target // x
     target -= (target // x) * x
