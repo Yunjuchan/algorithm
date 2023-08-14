@@ -1,23 +1,23 @@
-from copy import deepcopy
-direct_y = [0,0,1,-1]
-direct_x = [1,-1,0,0]
-T = int(input())
-def popping(y, x) :
-    cnt = balloons[y][x]
-    for i in range(4) :
-        dy = direct_y[i] + y
-        dx = direct_x[i] + x
-        if 0 <= dy < N and 0 <= dx < M :
-            cnt += balloons[dy][dx]
-    return cnt
+def abc(level) :
+    global cnt, flag
+    if path == word :
+        flag = 1
+        print(cnt)
+        return
+    for i in range(26) :
+        path.append(i)
+        abc(level+1)
+        if flag == 1 :
+            return
+        path.pop()
+    pass
+N = int(input())
 
-for tc in range(1, T+1) :
-    Max = 0
-    N, M = map(int, input().split())
-    balloons = [list(map(int, input().split())) for _ in range(N)]
-    for i in range(N) :
-        for j in range(M) :
-            if balloons[i][j] != 0 :
-                if popping(i,j) > Max :
-                    Max = popping(i,j)
-    print(f'#{tc} {Max}')
+for _ in range(N) :
+    path = []
+    word = list(input())
+    for i in range(len(word)) :
+        word[i] = ord(word[i]) - ord('A')
+    cnt = flag = 0
+    abc(0)
+    
