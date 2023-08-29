@@ -38,17 +38,12 @@ while True :
                 flag += 1
                 if flag == 2 :
                     break
-
                 melt(i, j)
-
         if flag == 2 :
             break
-
     if flag != 1 :
         break
     cnt += 1
-    for a in arr :
-        print(*a)
 
 if flag == 2 :
     print(cnt)
