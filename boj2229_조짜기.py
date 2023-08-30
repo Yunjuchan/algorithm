@@ -1,9 +1,16 @@
-N = int(input())
-lst = list(map(int, input().split()))
-last_lst = [lst[0]]
-dp = [0] * N
-for i in range(1, N) :
-    pass
- 
-print(dp)
-print(dp[N-1])
+A, B, C = map(int, input().split())
+result = 0
+def abc(a, n) :
+    if n == 1 :
+        return a % C
+    else :
+        tmp = abc(a, n//2)
+        if n % 2 == 1 :
+            return (tmp*tmp*a) % C
+        else :
+            return tmp**2 % C
+
+ret = abc(A, B)
+print(ret)
+
+
