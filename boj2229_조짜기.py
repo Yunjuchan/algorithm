@@ -1,23 +1,36 @@
-import copy
-N, K = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(N)]
+from collections import deque
+from heapq import heappush, heappop
+def dijk(a) :
+    visited = [False] * (N+1)
+    INF = 21e8
+    x = [INF]*(N+1)
+    x[X] = 0
+    que = []
+    heappush(que, [x[X], X])
+    while que : 
+        now_v, now = heappop(que)
+        if visited[now] :
+            continue
+        visited[now] = True
+        for next, v in a[now] :
+            if x[next] > v+now_v :
+                x[next] = v+now_v
+                heappush(que, [x[next], next])
+    return x
 
+N, M, X = map(int, input().split())
 
-def mat_mul(mat1, mat2) :
-    ret = [[0]*N for _ in range(N)]
-    for i in range(N) :
-        for j in range(N) :
-            for k in range(N) :
-                ret[i][j] += mat1[i][k]*mat2[k][j]
-            ret[i][j] %= 1000
-    return ret
+adj1 = [[] for _ in range(N+1)]
+adj2 = [[] for _ in range(N+1)]
 
-def abc(level, arr) :
-    if level == 1 :
-        return arr
-    
-    mat = abc(level // 2, arr)
-    return mat_mul(mat, mat) if level%2 ==0 else mat_mul(mat_mul(mat, mat),arr)
-    
-for a in abc(K, arr) :
-    print(*a)
+for _ in range(M) :
+    s, e, w = map(int, input().split())
+    adj1[s].append([e, w])
+    adj2[e].append([s, w])
+
+result = [0]*(N+1)
+a = dijk(adj1)
+b = dijk(adj2)
+for i in range(1,N+1) :
+    result[i] += a[i]+b[i]
+print(max(result))

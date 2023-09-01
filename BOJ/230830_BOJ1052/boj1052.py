@@ -8,3 +8,15 @@
 ## 즉 이건 2의 거듭제곱문제일 확률이 높음
 
 N, K = map(int, input().split())
+x = len(str(bin(N))[2:])
+num = N
+while num <= 2**x :     
+    cnt = bin(num).count('1')
+
+    if cnt <= K :
+        print(num - N)
+        break
+
+    num += 1
+else :
+    print(-1)
