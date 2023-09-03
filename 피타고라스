@@ -1,9 +1,18 @@
-while True :
-    x, y, z = map(int, input().split())
-    if x == 0 and y == 0 and z == 0 :
-        break
-    tmp = x ** 2 + y ** 2 + z ** 2 
-    if tmp == 2*x**2 or tmp == 2*y**2 or tmp == 2*z**2:
-        print('right')
+N = int(input())
+lst = list(map(int, input().split()))
+start = 0
+end = N-1
+diff = 21e8
+t1, t2 = None, None
+while start < end :
+    if abs(lst[start] + lst[end]) < diff :
+        diff = abs(lst[start] + lst[end])
+        t1 = lst[start]
+        t2 = lst[end]
+    if lst[start] + lst[end] > 0 :
+        end -= 1
+    elif lst[start] + lst[end] < 0 :
+        start += 1
     else :
-        print('wrong')
+        break
+print(t1, t2)
