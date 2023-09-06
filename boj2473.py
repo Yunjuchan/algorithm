@@ -6,9 +6,7 @@ end = N-1
 mid = 1
 diff = 31e8
 t1, t2, t3 = None, None, None
-print(lst)
 while mid < end and start < mid :
-    print(start, mid, end)
     if abs(lst[start] + lst[mid] + lst[end]) < diff :
         diff = abs(lst[start] + lst[mid] + lst[end])
         t1 = lst[start]
