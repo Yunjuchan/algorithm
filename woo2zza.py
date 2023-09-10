@@ -1,40 +1,42 @@
 from collections import deque
 import sys
+sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
-T = int(input())
-for _ in range(T) :
+N, M = map(int, input().split())
+arr = [input() for _ in range(N)]
 
-    K, M, P = map(int, input().split())
-    adj = [[] for _ in range(M+1)]
-    lst = [0]*(M+1)
-    stra = [[0,0] for _ in range(M+1)]
-    for _ in range(P) :
-        s, e = map(int, input().split())
-        adj[s].append(e)
-        lst[e] += 1
+def bfs(y, x, level) :
+    global cnt
     que = deque()
-    
-    for i in range(1, M+1) :
-        if lst[i] == 0 :
-            stra[i] = [1,1]
-            que.append([i, 1])
-    
+    que.append([y, x])
     while que :
-        now, level = que.popleft()
+        c_y, c_x = que.popleft()  
+        visited[c_y][c_x] = level
+        n_y, n_x = command(c_y, c_x, arr[c_y][c_x])
+        if visited[n_y][n_x] != -1 :
+            if visited[n_y][n_x] == level :
+                cnt += 1
+            return
+        else :
+            que.append([n_y, n_x])
         
-        for i in adj[now] :
-            lst[i] -= 1
-            if stra[i][0] < level :
-                stra[i] = [level,1]
-            elif stra[i][0] == level :
-                stra[i][1] += 1
-            
-            if lst[i] == 0 :
-                if stra[i][1] == 1 :
-                    que.append([i, stra[i][0]])
-                else :
-                    que.append([i, stra[i][0]+1])
-    result = stra[M][0]
-    if stra[M][1] != 1 :
-        result += 1
-    print(K, result)
+def command(y, x, c) :
+    if c == 'D' :
+        y += 1
+    elif c == 'U' :
+        y -= 1
+    elif c == 'R' :
+        x += 1
+    else :
+        x -= 1
+    return y, x
+
+visited = [[-1]*M for _ in range(N)]
+
+cnt = level = 0
+for i in range(N) :
+    for j in range(M) :
+        if visited[i][j] == -1:
+            bfs(i, j, level)
+            level += 1
+print(cnt)
