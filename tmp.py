@@ -169,18 +169,26 @@ while True:
                 tt_ball_y = targetBall_y
                 minHole = i
                 sub = new_a
-        print(T)
-
+    print(T)
+        
     hx, hy = NEW_HOLES[minHole][0], NEW_HOLES[minHole][1]
 
     radian = math.atan2(tt_ball_y - hy, tt_ball_x - hx)
     tx = math.cos(radian) * r + tt_ball_x
     ty = math.sin(radian) * r + tt_ball_y
+    
+    if tx < r/2 :
+        tx = r/2
+    elif tx > 254 - r/2 :
+        tx = 254 - r/2
+    if ty < r/2 :
+        ty = r/2
+    elif ty > 127 - r/2 :
+        ty = 127 - r/2
 
 
     radian1 = math.atan2(ty - whiteBall_y, tx - whiteBall_x)
     angle = (360 + 90 - radian1 * 180 / math.pi) % 360
-    
 
     # distance: 두 점(좌표) 사이의 거리를 계산
     # distance = math.sqrt(width**2 + height**2)
