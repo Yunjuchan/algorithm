@@ -1,24 +1,32 @@
-N, M = map(int, input().split())
-lst = list(map(int, input().split()))
-lst.sort(reverse=True)
+import sys
+input = sys.stdin.readline
+N, R1, C1, R2, C2 = map(int, input().split())
 
-lst2 = [0] * N
-for i in range(N-1) :
-    lst2[i] = lst[i] - lst[i+1]
-for i in range(N-1, 0, -1) :
-    lst2[i-1] += lst2[i]
-height = 0
-total = 0
-for i in range(N-1) :
-    total += (lst2[i] - lst2[i+1]) * (i+1)
-    if total >= M :
-        break
-if total == M :
-    height = lst[i+1]
-elif total > M :
-    x = (total-M) // (i+1)
-    height = lst[i+1] + x
-else :
-    x = (M - total + N - 1) // N
-    height = lst[-1] - x
-print(height)
+for i in range(R1, R2+1) :
+    for j in range(C1, C2+1) :
+        i %= (2*N-1)
+        j %= (2*N-1)
+        if i < N :
+            if j < N-i-1 :
+                print('.', end='')
+            elif j < N+i :
+                x = abs(N-1-j)
+                n = (97+x+N-i-1-19) % 26 + 97
+                print(chr(n), end='')
+            else :
+                print('.', end='')
+    
+        else :
+            i -= N-1
+            if j < i :
+                print('.', end='')
+            elif j < 2*N-i-1 :
+                x = abs(N-1-j)
+                n = (97+x+i-19) % 26 + 97
+                print(chr(n), end='')
+            else :
+                print('.', end='')
+            i += N-1
+            
+    print()
+        
