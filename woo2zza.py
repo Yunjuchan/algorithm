@@ -1,15 +1,36 @@
-A, B = map(int, input().split())
+import sys
 
-def count(num) :
-    i = 0
-    lst = [0] * 60
-    while num :
-        tmp = num // 2**i
-        lst[i] = ((tmp + 1) // 2) * 2 ** i
-        if lst[i] == 0 :
-            break
-        if tmp % 2 != 0 :
-            lst[i] -= (tmp+1)*2**(i) - 1 - num
-        i += 1
-    return sum(lst)
-print(count(B) - count(A-1))
+sys.setrecursionlimit(10 ** 6)
+input = sys.stdin.readline
+N = int(input())
+adj = [[] for _ in range(N + 1)]
+for _ in range(N - 1):
+    s, e, w = map(int, input().split())
+    adj[s].append([e, w])
+W = [0] * (N + 1)
+
+
+def dfs(now, Sum):
+    global Max
+    W[now] = Sum
+    x = W[now]
+
+    for next, w in adj[now]:
+        dfs(next, Sum + w)
+        if W[next] > x:
+            x = W[next]
+
+    if len(adj[now]) >= 2:
+        tmp = [0] * len(adj[now])
+        for i in range(len(adj[now])):
+            tmp[i] = W[adj[now][i][0]] - W[now]
+        tmp.sort()
+        result = abs(tmp[-1] + tmp[-2])
+        if result > Max:
+            Max = result
+            
+    W[now] = x
+
+Max = 0
+dfs(1, 0)
+print(max(Max, W[1]))
