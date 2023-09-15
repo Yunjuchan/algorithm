@@ -1,36 +1,28 @@
-import sys
-
-sys.setrecursionlimit(10 ** 6)
-input = sys.stdin.readline
-N = int(input())
-adj = [[] for _ in range(N + 1)]
-for _ in range(N - 1):
-    s, e, w = map(int, input().split())
-    adj[s].append([e, w])
-W = [0] * (N + 1)
-
-
-def dfs(now, Sum):
-    global Max
-    W[now] = Sum
-    x = W[now]
-
-    for next, w in adj[now]:
-        dfs(next, Sum + w)
-        if W[next] > x:
-            x = W[next]
-
-    if len(adj[now]) >= 2:
-        tmp = [0] * len(adj[now])
-        for i in range(len(adj[now])):
-            tmp[i] = W[adj[now][i][0]] - W[now]
-        tmp.sort()
-        result = abs(tmp[-1] + tmp[-2])
-        if result > Max:
-            Max = result
-            
-    W[now] = x
-
-Max = 0
-dfs(1, 0)
-print(max(Max, W[1]))
+N, M = map(int, input().split())
+lst = list(map(int, input().split()))
+value = lst[0]
+s = e = 0
+Min = 21e8
+while True :
+    if value >= M :
+        if e - s + 1 < Min :
+            Min = e - s + 1
+        value -= lst[s]
+        s += 1
+    else :
+        e += 1
+        if e == N :
+            break
+        value += lst[e]
+    
+    if s > e :
+        e += 1
+        if e == N :
+            break
+        value += lst[e]    
+    
+    
+if Min == 21e8 :
+    print(0)
+else : 
+    print(Min)
