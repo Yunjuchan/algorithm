@@ -1,28 +1,12 @@
-N, M = map(int, input().split())
+N = int(input())
+score = [0] * N
 lst = list(map(int, input().split()))
-value = lst[0]
-s = e = 0
-Min = 21e8
-while True :
-    if value >= M :
-        if e - s + 1 < Min :
-            Min = e - s + 1
-        value -= lst[s]
-        s += 1
-    else :
-        e += 1
-        if e == N :
-            break
-        value += lst[e]
-    
-    if s > e :
-        e += 1
-        if e == N :
-            break
-        value += lst[e]    
-    
-    
-if Min == 21e8 :
-    print(0)
-else : 
-    print(Min)
+for i in range(N) :
+    for j in range(i+1, N) :
+        if lst[i] % lst[j] == 0 :
+            score[i] -= 1
+            score[j] += 1
+        if lst[j] % lst[i] == 0 :
+            score[j] -= 1
+            score[i] += 1
+print(*score)
