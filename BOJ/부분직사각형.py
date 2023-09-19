@@ -7,10 +7,8 @@ arr += arr
 
 for i in range(2*N) :
     for j in range(2*M) :
-        lst[ord(arr[i][j])] += i*j + (2*M-j)*(2*N-i) 
-        lst[ord(arr[i][j])] += i*(2*M-j) + j*(2*N-i) 
-        lst[ord(arr[i][j])] += N*M
+        lst[ord(arr[i][j])] += (2*M-j)*(j+1)*(2*N-i)*(i+1)
 
-for i in range(65, 92) :
+for i in range(65, 91) :
     print(lst[i])
     
