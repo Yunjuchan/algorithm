@@ -1,0 +1,20 @@
+def solution(sequence, k):
+    answer = [0, 1000000]
+    N = len(sequence)
+    s, e =  0,0
+    tmp = sequence[0]
+    while True :
+        if tmp >= k :
+            if tmp == k and answer[1] - answer[0] > e - s :
+                answer = [s, e]
+            tmp -= sequence[s] 
+            s += 1
+            if s == N :
+                break
+        elif tmp < k :
+            if e == N-1 :
+                break
+            e += 1
+            tmp += sequence[e]
+
+    return answer
