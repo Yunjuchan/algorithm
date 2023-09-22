@@ -1,0 +1,26 @@
+from collections import deque   
+def bfs(maps) :
+    n = len(maps)
+    m = len(maps[0])
+    visited = [[False]*m for _ in range(n)]
+    direct_y = [1,0,-1,0]
+    direct_x = [0,1,0,-1]
+    que = deque()
+    visited[0][0] = True
+    que.append([1, 0, 0])
+    while que :
+        level, y, x = que.popleft()
+        for i in range(4) :
+            dy = direct_y[i] + y
+            dx = direct_x[i] + x
+            if dy < 0 or dy >= n or dx < 0 or dx >= m : continue
+            if not visited[dy][dx] and maps[dy][dx] == 1 :
+                visited[dy][dx] = True
+                if dy == n-1 and dx == m-1 :
+                    return level+1
+                que.append([level+1, dy, dx])
+    return -1
+        
+def solution(maps):
+    answer = bfs(maps)
+    return answer

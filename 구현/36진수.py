@@ -58,8 +58,7 @@ ts_result = ''
 while result :
     ts_result = ts[result%36] + ts_result
     result //= 36
-print(set(word))
-if set(word) == {0} :
+if set(word) == {'0'} :
     print(0)
 else :
     print(ts_result)
