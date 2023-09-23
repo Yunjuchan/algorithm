@@ -1,0 +1,25 @@
+from heapq import heappush, heappop 
+import sys
+input = sys.stdin.readline
+direct_y = [1,0,-1,0]
+direct_x = [0,1,0,-1]
+M, N = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(M)]
+visited = [[False]*N for _ in range(M)]
+dp = [[0]*N for _ in range(M)]
+dp[0][0] = 1
+visited[0][0] = True
+que = [[-arr[0][0], 0, 0]]
+while que :
+    w, y, x = heappop(que)
+    for i in range(4) :
+        dy = direct_y[i] + y
+        dx = direct_x[i] + x
+        if 0 <= dy < M and 0 <= dx < N :
+            if w + arr[dy][dx] < 0 :
+                dp[dy][dx] += dp[y][x]
+                if not visited[dy][dx] :
+                    visited[dy][dx] = True
+                    heappush(que,[-arr[dy][dx], dy, dx])
+print(dp[M-1][N-1])
+
