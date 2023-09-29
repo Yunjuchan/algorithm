@@ -1,5 +1,7 @@
 from heapq import heappush, heappop
-N = int(input())
+import sys
+input = sys.stdin.readline
+N = int(input().rstrip())
 que = []
 rem = []
 for _ in range(N) :
