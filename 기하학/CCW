@@ -7,8 +7,8 @@ def CCW(x, y, z) :
     return ret
 result = CCW(grid[0], grid[1], grid[2])
 if result > 0 :
-    print(-1)
-elif result < 0 :
     print(1)
+elif result < 0 :
+    print(-1)
 else :
     print(0) 
