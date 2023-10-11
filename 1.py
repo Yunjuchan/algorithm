@@ -1,28 +1,64 @@
-from collections import deque
-word = input()
-num_a, num_b = 0, 0
-for ch in word :
-    if ch == 'a' :
-        num_a += 1
-    else : 
-        num_b += 1
+import sys
+sys.setrecursionlimit(10**6)
+N = int(input())
+eggs = []
+for _ in range(N) :
+    eggs.append(list(map(int, input().split())))
+visited = [False] * N
+Max = 0
+def dfs(n, level) :
+    global Max
+    if n > Max :
+        Max = n
 
-if num_a < num_b :
-    target = 'a'
-    word += word[:num_a]
-    i, j = 0, num_a
-    num_t = Min = num_a
-else :
-    target = 'b'
-    word += word[:num_b]        
-    i, j = 0, num_b
-    num_t = Min = num_b
-n = len(word)
+    if n == N :
+        Max = N 
+        return
+    elif level == N :
+        return
+    elif level == n == N - 1 :
+        if n > Max :
+            Max = n
+            return
+    
+    if visited[level] :
+        dfs(n, level+1)
+        return
 
-while j <= n :
-    tmp = num_t - word[i:j].count(target)
-    if tmp < Min :
-        Min = tmp
-    i += 1
-    j += 1
-print(Min)
+    
+    for i in range(N) :
+        if i == level or visited[i] : continue
+        
+        if eggs[level][1] >= eggs[i][0] and eggs[i][1] >= eggs[level][0] :
+            visited[level] = True
+            visited[i] = True
+            dfs(n+2, level+1)
+            visited[level] = False
+            visited[i] = False
+        
+        elif eggs[level][1] >= eggs[i][0] :
+            visited[i] = True
+            eggs[level][0] -= eggs[i][1]
+            dfs(n+1, level+1)
+            eggs[level][0] += eggs[i][1]
+            visited[i] = False
+        
+        elif eggs[i][1] >= eggs[level][0] :
+            visited[level] = True
+            eggs[i][0] -= eggs[level][1]
+            dfs(n+1, level+1)
+            eggs[i][0] += eggs[level][1]
+            visited[level] = False
+        
+        else :
+            eggs[i][0] -= eggs[level][1]
+            eggs[level][0] -= eggs[i][1]
+            dfs(n, level+1)
+            eggs[i][0] += eggs[level][1]
+            eggs[level][0] += eggs[i][1]
+dfs(0,0)
+print(Max)
+        
+
+
+
