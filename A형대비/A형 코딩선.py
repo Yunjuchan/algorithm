@@ -1,0 +1,28 @@
+T = int(input())
+def dfs(level, start, path) :
+    if level == 4 :
+        noseon.append(path[:])
+        return
+    for i in range(start, N) :
+        if visited[i] : continue
+        dfs(level+1, i+2, path+[i])
+for tc in range(1, T+1) :
+    N = int(input())
+    A = list(map(int, input().split()))
+    visited = [False] * N
+    noseon = []
+    dfs(0,0,[])
+    Max = 0
+    for a, b, c, d in noseon :
+        tmp1 = tmp2 = 0
+        tmp1 += (A[a] + A[b])**2
+        tmp1 += (A[c] + A[d])**2
+        if tmp1 > Max :
+            Max = tmp1
+        tmp2 += (A[b] + A[c])**2
+        tmp2 += (A[a] + A[d])**2
+        if a == 0 and d == N-1 : continue        
+        if tmp2 > Max :
+            Max = tmp2
+
+    print(f'#{tc} {Max}')

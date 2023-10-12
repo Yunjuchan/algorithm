@@ -9,7 +9,5 @@ def dfs(x) :
         return
     for i in L :
         dfs(x+i)
-    
 dfs('0')
-
 print(cnt)
