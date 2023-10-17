@@ -14,14 +14,16 @@ def calc(a, b) :
     s, e = a+leaf, b+leaf
     while s <= e :
         if s % 2 :
-            ret *= tree[s] % 1000000007
+            ret *= tree[s] 
+            ret %= 1000000007
             s += 1
         if not e % 2 :
-            ret *= tree[e] % 1000000007
+            ret *= tree[e] 
+            ret %= 1000000007
             e -= 1
         s //= 2
         e //= 2
-    return ret
+    return ret 
 
 
 N, M ,K = map(int, input().split())
