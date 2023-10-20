@@ -53,7 +53,6 @@ def query(node, start, end, left, right):
     return lsum + rsum
 
 import sys
-import math
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 n, m, k = map(int, input().split())
