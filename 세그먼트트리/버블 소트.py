@@ -1,43 +1,43 @@
-def changeTree(s) :
-    s += leaf+1
-    
 N = int(input())
 A = list(map(int, input().split()))
-B = sorted(A)
-B2 = sorted(list(set(A)))
+B = sorted(list(set(A)))
 H = {}
-for i in range(N) :
-    H[B[i]] = H.get(B[i], 0) + 1
-print(B)
-print(H)
+for i in range(len(B)) :
+    H[B[i]] = i
+N2 = len(B)
 i = 0 
 while True :
-    if 2 ** i >= N :
+    if 2 ** i >= N2 :
         break
     i += 1
 leaf = 2 ** i - 1
 tree = [0] * 2 ** (i+1)
 
-def changeTree(s, e, node, i) :
-    if i < s or i > e :
+def update(tree, node, start, end, index, val):
+    print(tree)
+    if index < start or index > end:
+        return
+    if start == end:
+        tree[node] += val
+        return
+    update(tree, node*2, start, (start+end)//2, index, val)
+    update(tree, node*2+1, (start+end)//2+1, end, index, val)
+    tree[node] = tree[node*2] + tree[node*2+1]
+        
+def query(tree, node, start, end, left, right):
+    if left > end or right < start:
         return 0
-    tree[node] += 1
-    if s != e :
-        changeTree(s, (s+e)//2, node*2, i)
-        changeTree((s+e)//2+1, e, node*2+1, i)
-
-def calc(s, e, node, l, r) :
-    if e < l or r < s :
-        return 0
-    
-    if l <= s and e <= r :
+    if left <= start and end <= right:
         return tree[node]
-    
-    lsum = calc(s, (s+e)//2, node*2, l, r)
-    rsum = calc((s+e)//2+1, e, node*2+1, l, r)
-    return lsum+rsum
+    lsum = query(tree, node*2, start, (start+end)//2, left, right)
+    rsum = query(tree, node*2+1, (start+end)//2+1, end, left, right)
+    return lsum + rsum
 
 result = 0
 for i in range(N) :
-    pass
+    l = H[A[i]] + 1
+    r = leaf
+    result += query(tree, 1, 0, N2-1, l, r)
+    print('트리변경')
+    update(tree, 0, N2-1, 1, l-1, 1)
 print(result)
