@@ -1,4 +1,5 @@
 from heapq import heappush, heappop
+
 while True :
     N, M = map(int, input().split())
     if N == M == 0 : break
@@ -25,8 +26,6 @@ while True :
     while que :
         d, pre, now, tp, path = heappop(que)
         path.append([pre, now])
-        print(path)
-        print(tp)
         if visited[pre][now] : continue
         if now == e :
             if Min >= d :
