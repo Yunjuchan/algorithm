@@ -20,3 +20,23 @@ while que :
             break
 
 print(result)
+
+### 빠른 알고리즘
+
+# import sys, heapq
+# input = sys.stdin.readline
+
+# N = int(input())
+# work = []
+# for _ in range(N):
+#     p, d = map(int, input().split())
+#     heapq.heappush(work, (-d, -p))
+# can, ans = [], 0
+# if work:
+#     maxday = -work[0][0]
+#     for i in range(maxday, 0, -1):
+#         while work and -i == work[0][0]:
+#             heapq.heappush(can, heapq.heappop(work)[1])
+#         if can:
+#             ans -= heapq.heappop(can)
+# print(ans)
