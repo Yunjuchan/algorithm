@@ -1,6 +1,5 @@
-N, K = map(int, input().split())
-dp = [i for i in range(11)]
-dp[0] = 1
-for i in range(2, 11) :
-    dp[i] *= dp[i-1]
-print(dp[N]//(dp[K]*dp[N-K]))
+N=1000-int(input())
+A=500,100,50,10,5,1
+c=0
+for i in A:x,N=divmod(N,i);c+=x
+print(c)
